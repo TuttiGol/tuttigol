@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ricerca Goal</title>
+    <style>
+      /* Stile per il menu a tendina */
+      header {
+        background-color: #333;
+        padding: 20px;
+        text-align: center;
+      }
+
+      select {
+        margin-bottom: 16px;
+        font-size: 16px;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #555;
+        background-color: #222;
+        color: #fff;
+        box-shadow: none;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      input[type="submit"] {
+        margin-top: 16px;
+        font-size: 16px;
+        padding: 8px 16px;
+        border-radius: 4px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0062cc;
+      }
+
+      form {
+        margin: 0 auto;
+        max-width: 600px;
+        padding: 32px;
+        background-color: #333;
+        border-radius: 4px;
+        border: 1px solid #555;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      body {
+        background-color: #222;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <header> {% load static %} <a href="/home/">
+        <img src="{% static 'gols/home.png' %}" alt="Logo del mio sito web">
+      </a>
+    </header>
+    <form method="POST"> {% csrf_token %} <label for="nomeGiocatore">Nome giocatore:</label>
+      <select name="nomeGiocatore">
+        <option value="">-- Seleziona giocatore --</option> {% for giocatore in giocatori %} <option value="{{ giocatore }}">{{ giocatore }}</option> {% endfor %}
+      </select>
+      <label for="squadra">Squadra:</label>
+      <select name="squadra">
+        <option value="">-- Seleziona squadra --</option> {% for squadra in squadre %} <option value="{{ squadra }}">{{ squadra }}</option> {% endfor %}
+      </select>
+      <label for="competizione">Competizione:</label>
+      <select name="competizione">
+        <option value="">-- Seleziona competizione --</option> {% for competizione in competizioni %} <option value="{{ competizione }}">{{ competizione }}</option> {% endfor %}
+      </select>
+      <label for="giornata">Giornata:</label>
+      <select name="giornata">
+        <option value="">-- Seleziona giornata --</option> {% for giornata in giornate %} <option value="{{ giornata }}">{{ giornata }}</option> {% endfor %}
+      </select>
+      <label for="descrizioneGoal">Descrizione goal:</label>
+      <select name="descrizioneGoal">
+        <option value="">-- Seleziona descrizione --</option> {% for descrizione in descrizioni%} <option value="{{ descrizione }}">{{ descrizione }}</option> {% endfor %}
+      </select>
+      <label for="valutazione">Valutazione:</label>
+      <select name="valutazione">
+        <option value="">-- Seleziona valutazione --</option> {% for valutazione in valutazioni %} <option value="{{ valutazione }}">{{ valutazione }}</option> {% endfor %}
+      </select>
+      <label for="stagione">Stagione:</label>
+      <select name="stagione">
+        <option value="">-- Seleziona stagione --</option> {% for stagione in stagioni %} <option value="{{ stagione }}">{{ stagione }}</option> {% endfor %}
+      </select>
+      <br>
+      <input type="submit" value="Cerca">
+    </form>
+  </body>
+</html>
